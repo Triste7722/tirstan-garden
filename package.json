@@ -1,0 +1,28 @@
+{
+  "name": "myblog",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "vue": "^3.5.45",
+    "vue-router": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^26.6.6",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "tailwindcss": "^4.3.5",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.8",
+    "vue-tsc": "^3.3.14"
+  }
+}

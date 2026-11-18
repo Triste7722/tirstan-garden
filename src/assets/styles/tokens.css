@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Semantic tokens — dark first, light theme overrides
+   ========================================================================== */
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --base: #07080b;
+  --surface: #0e1015;
+  --raised: #14171e;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  --ink: #e8ebf2;
+  --muted: #9aa3b2;
+  --subtle: #7d8798;
+
+  --accent: #22d3ee;
+  --accent-strong: #67e8f9;
+  --accent-ink: #031014;
+  --violet: #8b5cf6;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #fb7185;
+
+  --glass-bg: rgba(14, 16, 21, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 10px 40px -18px rgba(0, 0, 0, 0.55);
+  --grid-color: rgba(255, 255, 255, 0.045);
+  --glow-accent: rgba(34, 211, 238, 0.16);
+  --glow-violet: rgba(139, 92, 246, 0.14);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --base: #f5f7fa;
+  --surface: #ffffff;
+  --raised: #ffffff;
+
+  --line: rgba(9, 12, 20, 0.1);
+  --line-strong: rgba(9, 12, 20, 0.18);
+
+  --ink: #0b0d12;
+  --muted: #556070;
+  --subtle: #5f6b7c;
+
+  --accent: #0e7490;
+  --accent-strong: #155e75;
+  --accent-ink: #ffffff;
+  --violet: #7c3aed;
+  --success: #047857;
+  --warning: #b45309;
+  --danger: #be123c;
+
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(9, 12, 20, 0.08);
+  --glass-shadow: 0 8px 30px -18px rgba(9, 12, 20, 0.2);
+  --grid-color: rgba(9, 12, 20, 0.05);
+  --glow-accent: rgba(14, 116, 144, 0.1);
+  --glow-violet: rgba(124, 58, 237, 0.08);
+}
+
+/* ==========================================================================
+   Tailwind theme mapping
+   ========================================================================== */
+
+@theme inline {
+  --color-canvas: var(--base);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-ink: var(--accent-ink);
+  --color-violet: var(--violet);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-sans:
+    'Space Grotesk Variable', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+    ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    'Space Grotesk Variable', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+    ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    'JetBrains Mono Variable', 'SFMono-Regular', 'Cascadia Code', Menlo, ui-monospace,
+    monospace;
+
+  --radius-card: 1.125rem;
+  --radius-panel: 1.5rem;
+
+  --shadow-glow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 8%, transparent),
+    0 8px 30px -12px color-mix(in srgb, var(--accent) 45%, transparent);
+  --shadow-glow-strong:
+    0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent),
+    0 12px 40px -10px color-mix(in srgb, var(--accent) 55%, transparent);
+  --shadow-glow-soft: 0 0 0 3px color-mix(in srgb, var(--accent) 10%, transparent);
+  --shadow-card: 0 20px 50px -30px rgba(0, 0, 0, 0.8);
+
+  --text-display: clamp(2.6rem, 6.4vw, 4.6rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.045em;
+}
