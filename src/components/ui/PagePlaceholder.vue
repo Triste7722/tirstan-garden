@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import BaseButton from '@/components/ui/BaseButton.vue'
-import BaseTag from '@/components/ui/BaseTag.vue'
 
 withDefaults(
   defineProps<{
@@ -37,19 +36,8 @@ withDefaults(
         {{ description }}
       </p>
 
-      <div class="mt-6">
-        <BaseTag variant="outline" dot>M1 · Placeholder</BaseTag>
-      </div>
-
       <div v-if="actionTo" class="mt-8">
         <BaseButton :to="actionTo" variant="secondary">{{ actionLabel }}</BaseButton>
-      </div>
-
-      <div class="mt-12 rounded-card border border-dashed border-line bg-surface/40 p-6">
-        <p class="mono-label text-subtle">Coming next</p>
-        <p class="mt-2 text-sm leading-7 text-muted">
-          页面结构已接入全局布局与路由，内容会在后续里程碑逐步填充。
-        </p>
       </div>
     </div>
   </main>

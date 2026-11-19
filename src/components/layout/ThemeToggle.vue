@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useTheme } from '@/composables/useTheme'
 
 const { isDark, themeLabel, toggleTheme } = useTheme()
@@ -7,7 +8,7 @@ const { isDark, themeLabel, toggleTheme } = useTheme()
 <template>
   <button
     type="button"
-    class="group relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/60 text-muted transition hover:border-accent/40 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+    class="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface/60 text-muted transition hover:border-accent/40 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:h-9 md:w-9"
     :aria-label="themeLabel"
     :title="themeLabel"
     @click="toggleTheme"
@@ -18,40 +19,8 @@ const { isDark, themeLabel, toggleTheme } = useTheme()
     />
 
     <Transition name="icon-swap" mode="out-in">
-      <svg
-        v-if="isDark"
-        key="moon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
-      </svg>
-
-      <svg
-        v-else
-        key="sun"
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
-      </svg>
+      <BaseIcon v-if="isDark" key="moon" name="moon" :size="16" />
+      <BaseIcon v-else key="sun" name="sun" :size="16" />
     </Transition>
   </button>
 </template>

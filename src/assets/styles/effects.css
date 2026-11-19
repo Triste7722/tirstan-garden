@@ -10,8 +10,7 @@
   pointer-events: none;
   background:
     radial-gradient(ellipse 80% 50% at 15% -10%, var(--glow-accent), transparent 60%),
-    radial-gradient(ellipse 70% 45% at 90% 0%, var(--glow-violet), transparent 55%),
-    var(--base);
+    radial-gradient(ellipse 70% 45% at 90% 0%, var(--glow-violet), transparent 55%), var(--base);
 }
 
 .page-backdrop::before {

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* ==========================================================================
    Semantic tokens — dark first, light theme overrides
@@ -66,6 +66,60 @@
 }
 
 /* ==========================================================================
+   Material Design 3 — color roles / state layers / elevation
+   将现有语义令牌映射为 M3 的角色语义。所有「容器色」均通过 color-mix 派生，
+   因此会自动跟随深浅主题切换，无需为每个主题单独维护。
+   ========================================================================== */
+
+:root {
+  /* Primary —— 青蓝强调色 */
+  --md-primary: var(--accent);
+  --md-on-primary: var(--accent-ink);
+  --md-primary-container: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  --md-on-primary-container: var(--accent-strong);
+
+  /* Secondary —— 紫罗兰副色 */
+  --md-secondary: var(--violet);
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: color-mix(in srgb, var(--violet) 16%, var(--surface));
+  --md-on-secondary-container: color-mix(in srgb, var(--violet) 60%, var(--ink));
+
+  /* Tertiary —— 绿色点缀 */
+  --md-tertiary: var(--success);
+  --md-on-tertiary: #052e1f;
+  --md-tertiary-container: color-mix(in srgb, var(--success) 16%, var(--surface));
+  --md-on-tertiary-container: color-mix(in srgb, var(--success) 55%, var(--ink));
+
+  /* Error —— 危险色 */
+  --md-error: var(--danger);
+  --md-on-error: #ffffff;
+
+  /* Surface —— 调性表面层级 */
+  --md-surface: var(--surface);
+  --md-surface-container-lowest: var(--base);
+  --md-surface-container-low: color-mix(in srgb, var(--surface) 55%, var(--base));
+  --md-surface-container: var(--surface);
+  --md-surface-container-high: var(--raised);
+  --md-surface-container-highest: color-mix(in srgb, var(--ink) 5%, var(--raised));
+
+  --md-on-surface: var(--ink);
+  --md-on-surface-variant: var(--muted);
+
+  --md-outline: var(--line-strong);
+  --md-outline-variant: var(--line);
+
+  /* State layers —— hover / pressed / focus 的透明覆盖层 */
+  --md-state-hover: color-mix(in srgb, var(--ink) 8%, transparent);
+  --md-state-pressed: color-mix(in srgb, var(--ink) 12%, transparent);
+  --md-state-focus: color-mix(in srgb, var(--accent) 12%, transparent);
+
+  /* Elevation —— 阴影层级 */
+  --md-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-elevation-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-elevation-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
    Tailwind theme mapping
    ========================================================================== */
 
@@ -86,15 +140,41 @@
   --color-warning: var(--warning);
   --color-danger: var(--danger);
 
+  /* M3 角色映射 → 生成 bg-md-* / text-md-* / border-md-* 等工具类 */
+  --color-md-primary: var(--md-primary);
+  --color-md-on-primary: var(--md-on-primary);
+  --color-md-primary-container: var(--md-primary-container);
+  --color-md-on-primary-container: var(--md-on-primary-container);
+  --color-md-secondary: var(--md-secondary);
+  --color-md-secondary-container: var(--md-secondary-container);
+  --color-md-on-secondary-container: var(--md-on-secondary-container);
+  --color-md-tertiary: var(--md-tertiary);
+  --color-md-tertiary-container: var(--md-tertiary-container);
+  --color-md-on-tertiary-container: var(--md-on-tertiary-container);
+  --color-md-error: var(--md-error);
+  --color-md-surface: var(--md-surface);
+  --color-md-surface-container-lowest: var(--md-surface-container-lowest);
+  --color-md-surface-container-low: var(--md-surface-container-low);
+  --color-md-surface-container: var(--md-surface-container);
+  --color-md-surface-container-high: var(--md-surface-container-high);
+  --color-md-surface-container-highest: var(--md-surface-container-highest);
+  --color-md-on-surface: var(--md-on-surface);
+  --color-md-on-surface-variant: var(--md-on-surface-variant);
+  --color-md-outline: var(--md-outline);
+  --color-md-outline-variant: var(--md-outline-variant);
+
+  --shadow-elevation-1: var(--md-elevation-1);
+  --shadow-elevation-2: var(--md-elevation-2);
+  --shadow-elevation-3: var(--md-elevation-3);
+
   --font-sans:
-    'Space Grotesk Variable', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
-    ui-sans-serif, system-ui, sans-serif;
+    'Space Grotesk Variable', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', ui-sans-serif,
+    system-ui, sans-serif;
   --font-display:
-    'Space Grotesk Variable', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
-    ui-sans-serif, system-ui, sans-serif;
+    'Space Grotesk Variable', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', ui-sans-serif,
+    system-ui, sans-serif;
   --font-mono:
-    'JetBrains Mono Variable', 'SFMono-Regular', 'Cascadia Code', Menlo, ui-monospace,
-    monospace;
+    'JetBrains Mono Variable', 'SFMono-Regular', 'Cascadia Code', Menlo, ui-monospace, monospace;
 
   --radius-card: 1.125rem;
   --radius-panel: 1.5rem;

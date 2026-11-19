@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-type TagVariant = 'accent' | 'neutral' | 'outline' | 'success' | 'violet'
+type TagVariant =
+  | 'accent'
+  | 'neutral'
+  | 'outline'
+  | 'success'
+  | 'violet'
+  | 'primary'
+  | 'secondary'
 type TagSize = 'sm' | 'md'
 
 const props = withDefaults(
@@ -23,6 +30,8 @@ const variantClasses: Record<TagVariant, string> = {
   outline: 'border-line bg-transparent text-muted',
   success: 'border-success/30 bg-success/10 text-success',
   violet: 'border-violet/30 bg-violet/10 text-violet',
+  primary: 'border-md-primary/30 bg-md-primary-container text-md-on-primary-container',
+  secondary: 'border-md-secondary/30 bg-md-secondary-container text-md-on-secondary-container',
 }
 
 const sizeClasses: Record<TagSize, string> = {

@@ -4,6 +4,7 @@ import '@fontsource-variable/jetbrains-mono'
 import './assets/styles/tokens.css'
 import './assets/styles/base.css'
 import './assets/styles/effects.css'
+import './assets/styles/prose.css'
 
 import { createApp } from 'vue'
 

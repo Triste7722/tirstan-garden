@@ -32,7 +32,8 @@ const variantClasses: Record<ButtonVariant, string> = {
   secondary:
     'border border-line bg-surface/70 text-ink backdrop-blur hover:border-accent/40 hover:bg-raised',
   ghost: 'text-muted hover:bg-ink/[0.06] hover:text-ink',
-  danger: 'border border-danger/30 bg-danger/10 text-danger hover:border-danger/50 hover:bg-danger/15',
+  danger:
+    'border border-danger/30 bg-danger/10 text-danger hover:border-danger/50 hover:bg-danger/15',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {

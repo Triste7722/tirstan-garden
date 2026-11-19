@@ -42,9 +42,7 @@ export function initTheme() {
 
 export function useTheme() {
   const isDark = computed(() => theme.value === 'dark')
-  const themeLabel = computed(() =>
-    isDark.value ? '切换到浅色模式' : '切换到深色模式',
-  )
+  const themeLabel = computed(() => (isDark.value ? '切换到浅色模式' : '切换到深色模式'))
 
   function toggleTheme() {
     applyTheme(theme.value === 'dark' ? 'light' : 'dark')

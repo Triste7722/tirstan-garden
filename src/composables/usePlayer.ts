@@ -12,8 +12,6 @@ import { parseLrc, type LyricLine } from '@/utils/lrc'
 const AUDIO_SRC = `${import.meta.env.BASE_URL}yujian.flac`
 const LRC_SRC = `${import.meta.env.BASE_URL}歌词.txt`
 
-export const SONG_TITLE = '遇见'
-
 const isPlaying = ref(false)
 const hasStarted = ref(false) // 是否已触发过首次交互（用于决定是否显示歌词框）
 const currentLyric = ref('')
@@ -22,7 +20,7 @@ const currentTime = ref(0)
 const duration = ref(0)
 
 let audio: HTMLAudioElement | null = null
-let lyrics: LyricLine[] = []
+const lyrics = ref<LyricLine[]>([])
 let lyricPromise: Promise<void> | null = null
 let autoplayBound = false
 let initialized = false
@@ -62,11 +60,11 @@ function loadLyrics(): Promise<void> {
       return res.text()
     })
     .then((text) => {
-      lyrics = parseLrc(text)
+      lyrics.value = parseLrc(text)
     })
     .catch(() => {
       // 歌词加载失败不应阻塞音乐播放，静默降级为无歌词
-      lyrics = []
+      lyrics.value = []
     })
 
   return lyricPromise
@@ -75,12 +73,12 @@ function loadLyrics(): Promise<void> {
 /** 二分查找：当前时间点应显示的最后一条歌词 */
 function findActiveIndex(time: number): number {
   let lo = 0
-  let hi = lyrics.length - 1
+  let hi = lyrics.value.length - 1
   let ans = -1
 
   while (lo <= hi) {
     const mid = (lo + hi) >> 1
-    if (lyrics[mid].time <= time) {
+    if (lyrics.value[mid].time <= time) {
       ans = mid
       lo = mid + 1
     } else {
@@ -96,12 +94,12 @@ function handleTimeUpdate() {
 
   currentTime.value = audio.currentTime
 
-  if (lyrics.length === 0) return
+  if (lyrics.value.length === 0) return
 
   const idx = findActiveIndex(audio.currentTime)
   if (idx !== currentLyricIndex.value) {
     currentLyricIndex.value = idx
-    currentLyric.value = idx >= 0 ? lyrics[idx].text : ''
+    currentLyric.value = idx >= 0 ? lyrics.value[idx].text : ''
   }
 }
 
@@ -171,6 +169,8 @@ export function usePlayer() {
     isPlaying: readonly(isPlaying),
     hasStarted: readonly(hasStarted),
     currentLyric: readonly(currentLyric),
+    currentLyricIndex: readonly(currentLyricIndex),
+    lyrics: readonly(lyrics),
     currentTime: readonly(currentTime),
     duration: readonly(duration),
     toggle,

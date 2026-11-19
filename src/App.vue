@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import DynamicBackground from '@/components/layout/DynamicBackground.vue'
+import SiteAnnouncement from '@/components/layout/SiteAnnouncement.vue'
 import SiteFooter from '@/components/layout/SiteFooter.vue'
 import SiteHeader from '@/components/layout/SiteHeader.vue'
-import MusicPlayer from '@/components/player/MusicPlayer.vue'
 </script>
 
 <template>
@@ -13,6 +13,8 @@ import MusicPlayer from '@/components/player/MusicPlayer.vue'
 
     <SiteHeader />
 
+    <SiteAnnouncement />
+
     <div class="flex-1">
       <RouterView v-slot="{ Component }">
         <Transition name="page" mode="out-in">
@@ -22,8 +24,6 @@ import MusicPlayer from '@/components/player/MusicPlayer.vue'
     </div>
 
     <SiteFooter />
-
-    <MusicPlayer />
   </div>
 </template>
 

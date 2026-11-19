@@ -3,27 +3,27 @@ import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { useTheme } from '@/composables/useTheme'
+import {
+  allBackgrounds,
+  fallbackBackground,
+  pageBackgrounds,
+  postDetailBackground,
+} from '@/config/backgrounds'
 
 const route = useRoute()
 const { isDark } = useTheme()
 
-const backgrounds: Record<string, string> = {
-  '/': '/bg.jpg',
-  '/posts': '/bg-posts.jpg',
-  '/about': '/bg-about.jpg',
-}
-
 const activeBackground = computed(() => {
   const { path } = route
-  if (backgrounds[path]) return backgrounds[path]
+  if (pageBackgrounds[path]) return pageBackgrounds[path]
   // 文章详情页复用列表页壁纸，保持视觉一致
-  if (path.startsWith('/posts/')) return '/bg-posts.jpg'
-  return '/bg.jpg'
+  if (path.startsWith('/posts/')) return postDetailBackground
+  return fallbackBackground
 })
 
 // 预加载所有背景图，避免首次切换时图片未就绪导致的生硬闪现
 onMounted(() => {
-  for (const src of Object.values(backgrounds)) {
+  for (const src of allBackgrounds) {
     const img = new Image()
     img.src = src
   }
@@ -41,10 +41,7 @@ onMounted(() => {
         />
       </Transition>
 
-      <div
-        class="bg-overlay"
-        :class="isDark ? 'bg-overlay--dark' : 'bg-overlay--light'"
-      />
+      <div class="bg-overlay" :class="isDark ? 'bg-overlay--dark' : 'bg-overlay--light'" />
     </div>
   </Teleport>
 </template>
